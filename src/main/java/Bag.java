@@ -13,10 +13,11 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
+
     private String color;
     private int numberOfContents;
     private int capacity;
-    private String[] contents = new String[this.capacity];
+    private String[] contents;
 
 
 
@@ -34,6 +35,8 @@ public abstract class Bag {
     public Bag (String bagColour, int bagCapacity){
         this.color = bagColour;
         this.capacity = bagCapacity;
+        this.numberOfContents = 0;
+        this.contents = new String[this.capacity];
 
     }
 
@@ -46,7 +49,7 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
-    public String getColour(){
+    public String getColor(){
         return this.color;
     }
 
@@ -66,7 +69,7 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-    public void setColour(String newColour){
+    public void setColor(String newColour){
         this.color = newColour;
     }
 
@@ -87,8 +90,8 @@ public abstract class Bag {
     public boolean addItem(String item){
 
         if (this.numberOfContents < this.capacity){
+            this.contents[numberOfContents] = item;
             this.numberOfContents++;
-            this.contents[numberOfContents] = item; //Fix this line
             return true;
         }
         else {
@@ -112,7 +115,7 @@ public abstract class Bag {
      * @return the popped item from the bag
      */
     public String popItem(){
-        String removed = this.contents[this.numberOfContents];
+        String removed = this.contents[this.numberOfContents - 1];
         this.numberOfContents--;
         return removed;
     }
